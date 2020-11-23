@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <link href="../static/main/homepage.css" th:href="@{/homepage.css}" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,900&family=Leckerli+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>TEST PAGE</title>
+</head>
+<body>
+    <div id="menu" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <div class="uk-position-top">
+            <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+                <div class="content">
+                    <div class="uk-navbar-left menu-left">
+                        <ul class="uk-navbar-nav">
+                            <li><a id="logo" href="#">Grzegorz Szczerba</a></li>
+                            <li><p id="logo-desc">/fullstack</p></li>
+                        </ul>
+                    </div>
+                    <div class="uk-navbar-right menu-right">
+                        <ul class="uk-navbar-nav">
+                            <li class="uk-active"><a href="#">home</a></li>
+                            <li><a href="#">Portfolio</a></li>
+                            <li><a href="#">Resume</a></li>
+                            <li><a href="#">Contact</a></li>
+                            <p class="separator">|</p>
+                            <li><a href="#" uk-icon="github"></a></li>
+                            <li><a href="#" uk-icon="linkedin"></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div id="header">
+        <div class="slider uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="center: true">
+            <ul class="uk-slider-items uk-grid">
+                <li class="uk-width-4-4">
+                    <div class="uk-panel">
+                        <img src="https://images.unsplash.com/photo-1558358994-86ce9a4724ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80" alt="">
+                        <div class="slider-item uk-position-center uk-panel">
+                            <div class="description">
+                                <h1>Photoblog app</h1>
+                                <p>Based on Instagram and Pinterest</p>
+                                <div class="tags">
+                                    <span>JAVA</span>
+                                    <span>SPRING BOOT</span>
+                                    <span>SPRING SECURITY</span>
+                                    <span>REACT.JS</span>
+                                    <span>MS AZURE CLOUD</span>
+                                    <span>MYSQL</span>
+                                    <span>CLEAN ARCHITECTURE</span>
+                                    <span>REST</span>
+                                </div>
+                            </div>
+                            <div class="presentation">
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="uk-width-4-4">
+                    <div class="uk-panel">
+                        <img src="https://images.unsplash.com/photo-1557672172-298e090bd0f1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80" alt="">
+                        <div class="slider-item uk-position-center uk-panel">
+                            <div class="white description">
+                                <h1>Travel Agent</h1>
+                                <p>Based on Booking.com and AirBnB</p>
+                                <div class="tags">
+                                    <span>JAVA</span>
+                                    <span>SPRING BOOT</span>
+                                    <span>SPRING SECURITY</span>
+                                    <span>REACT.JS</span>
+                                    <span>MS AZURE CLOUD</span>
+                                    <span>MYSQL</span>
+                                    <span>CLEAN ARCHITECTURE</span>
+                                    <span>REST</span>
+                                </div>
+                            </div>
+                            <div class="presentation">
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="uk-width-4-4">
+                    <div class="uk-panel">
+                        <img src="https://images.unsplash.com/photo-1518112166137-85f9979a43aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80" alt="">
+                        <div class="slider-item uk-position-center uk-panel">
+                            <div class="description">
+                                <h1>Language App</h1>
+                                <p>Based on Tinder</p>
+                                <div class="tags">
+                                    <span>JAVA</span>
+                                    <span>SPRING BOOT</span>
+                                    <span>SPRING SECURITY</span>
+                                    <span>REACT.JS</span>
+                                    <span>MS AZURE CLOUD</span>
+                                    <span>MYSQL</span>
+                                    <span>CLEAN ARCHITECTURE</span>
+                                    <span>REST</span>
+                                </div>
+                            </div>
+                            <div class="presentation">
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <a class="slidenav uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+            <a class="slidenav uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+        </div>
+
+    </div>
+    <h1 th:text="${siema}"></h1>
+</body>
+</html>
