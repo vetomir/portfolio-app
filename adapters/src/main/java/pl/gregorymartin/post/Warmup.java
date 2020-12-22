@@ -5,35 +5,82 @@ import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
 import pl.gregorymartin.post.dto.ProjectWriteModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Component("projectWarmup")
 class Warmup implements ApplicationListener<ContextRefreshedEvent> {
     private final ProjectFasade projectFasade;
-    private final ProjectQueryRepository projectQueryRepository;
 
-    Warmup(final ProjectFasade projectFasade, final ProjectQueryRepository projectQueryRepository) {
+    Warmup(final ProjectFasade projectFasade) {
         this.projectFasade = projectFasade;
-        this.projectQueryRepository = projectQueryRepository;
     }
 
 
     @Override
     public void onApplicationEvent(final ContextRefreshedEvent contextRefreshedEvent) {
 
-        if(projectQueryRepository.count() == 0){
-            var project = new ProjectWriteModel();
-            project.setTitle("Project 1");
-            project.setDescription("Lorem Ipsum");
-            project.setGithubUrl("https://github.com/vetomir/SpaceTravel");
-            project.setScreenImgUrl("https://images.unsplash.com/photo-1547253291-1337138b39e0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
-            project.setTags(List.of("Foo","Bar","FooBar"));
-            projectFasade.save(project);
-            project.setTitle("Project 2");
-            projectFasade.save(project);
-            project.setTitle("Project 3");
-            projectFasade.save(project);
+        List<ProjectWriteModel> list = new ArrayList<>();
+        list.add(new ProjectWriteModel(
+                "Travello",
+                "Travel Booking Application",
+                "https://cdn.dribbble.com/users/1124467/screenshots/3782251/attachments/852171/page_speed_test_conversations.png",
+                "",
+                "",
+                "https://github.com/vetomir/Travel-Application",
+                "",
+                "",
+                List.of(
+                        "REST",
+                        "MS Azure",
+                        "MySql",
+                        "Java",
+                        "Spring Boot",
+                        "Clean Architecture",
+                        "Spring Security"
+                ))
+        );
+        list.add(new ProjectWriteModel(
+                "PicApp",
+                "Photoblog Application",
+                "https://cdn.dribbble.com/users/1124467/screenshots/3782251/attachments/852171/page_speed_test_conversations.png",
+                "",
+                "",
+                "https://github.com/vetomir/Travel-Application",
+                "",
+                "",
+                List.of(
+                        "REST",
+                        "MS Azure",
+                        "MySql",
+                        "Java",
+                        "Spring Boot",
+                        "Clean Architecture",
+                        "Spring Security"
+                ))
+        );
+        list.add(new ProjectWriteModel(
+                "Langer",
+                "Language Learning Application",
+                "https://cdn.dribbble.com/users/1124467/screenshots/3782251/attachments/852171/page_speed_test_conversations.png",
+                "",
+                "",
+                "https://github.com/vetomir/Travel-Application",
+                "",
+                "",
+                List.of(
+                        "REST",
+                        "MS Azure",
+                        "MySql",
+                        "Java",
+                        "Spring Boot",
+                        "Clean Architecture",
+                        "Spring Security"
+                ))
+        );
 
-        }
+
+        list.forEach(projectFasade::save);
+
     }
 }

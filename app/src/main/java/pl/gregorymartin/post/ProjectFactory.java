@@ -2,7 +2,6 @@ package pl.gregorymartin.post;
 
 import pl.gregorymartin.post.dto.ProjectReadModel;
 import pl.gregorymartin.post.dto.ProjectWriteModel;
-import pl.gregorymartin.tags.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +22,7 @@ class ProjectFactory {
         project.setMobileImgUrl(projectWriteModel.getMobileImgUrl());
         project.setGithubUrl(projectWriteModel.getGithubUrl());
         project.setGithubFrontUrl(projectWriteModel.getGithubFrontEndUrl());
-        project.setTodo(project.getTodo());
+        project.setTodo(projectWriteModel.getTodo());
         if(projectWriteModel.getTags() != null){
             project.setTags(projectWriteModel.getTags().stream()
                     .filter(x -> !x.isBlank())
@@ -57,22 +56,18 @@ class ProjectFactory {
     }
 
     public static ProjectReadModel toDto(Project project) {
-        ProjectReadModel projectReadModel = new ProjectReadModel();
-        projectReadModel.setId(project.getId());
-        projectReadModel.setTitle(project.getTitle());
-        projectReadModel.setDescription(project.getDescription());
-
-        projectReadModel.setWebsiteUrl(project.getWebsiteUrl());
-        projectReadModel.setGithubUrl(project.getGithubFrontUrl());
-        projectReadModel.setMobileImgUrl(project.getMobileImgUrl());
-        projectReadModel.setScreenImgUrl(project.getScreenImgUrl());
-
-        projectReadModel.setTags(project.getTags().stream()
+        return ProjectReadModel.builder()
+                .id(project.getId())
+                .title(project.getTitle())
+                .description(project.getDescription())
+                .websiteUrl(project.getWebsiteUrl())
+                .githubUrl(project.getGithubUrl())
+                .mobileImgUrl(project.getMobileImgUrl())
+                .screenImgUrl(project.getScreenImgUrl())
+                .tags(project.getTags().stream()
                 .map(Tag::getName)
-                .collect(Collectors.toList()));
-
-        projectReadModel.setTodo(project.getTodo());
-
-        return projectReadModel;
+                .collect(Collectors.toList()))
+                .todo(project.getTodo())
+                .build();
     }
 }

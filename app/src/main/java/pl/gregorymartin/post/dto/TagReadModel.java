@@ -1,4 +1,4 @@
-package pl.gregorymartin.tags.dto;
+package pl.gregorymartin.post.dto;
 
 
 class TagReadModel {

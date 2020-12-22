@@ -1,4 +1,4 @@
-package pl.gregorymartin.tags;
+package pl.gregorymartin.post;
 
 
 import org.springframework.data.annotation.PersistenceConstructor;
@@ -12,7 +12,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "tags")
-public class Tag {
+class Tag {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private long id;

@@ -10,6 +10,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@IllegalExceptionProcessing
 @RequestMapping("/api")
 class ProjectController {
     private final ProjectFasade projectFasade;
@@ -33,12 +34,10 @@ class ProjectController {
     }
     @PostMapping
     public ResponseEntity<ProjectReadModel> createPost(@RequestBody ProjectWriteModel project/*, @RequestParam(name = "user-id") long userId*/) {
-
-        System.out.println("sadfghj,hj");
         ProjectReadModel result = projectFasade.save(project);
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);
     }
-    @PatchMapping
+    @PutMapping
     public ResponseEntity<ProjectReadModel> updatePost(@RequestParam long id, @RequestBody ProjectWriteModel project/*, @RequestParam(name = "user-id") long userId*/) {
         ProjectReadModel result = projectFasade.modify(id, project);
         return ResponseEntity.created(URI.create("/" + result.getId())).body(result);

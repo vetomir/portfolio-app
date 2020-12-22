@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <link href="../static/homepage.css" th:href="@{/homepage.css}" rel="stylesheet" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,900&family=Leckerli+One&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <title>TEST PAGE</title>
+</head>
+<body>
+    <script>
+        var particleAlphabet = {
+            Particle: function(x, y) {
+                this.x = x;
+                this.y = y;
+                this.radius = 3.5;
+                this.draw = function(ctx) {
+                    ctx.save();
+                    ctx.translate(this.x, this.y);
+                    ctx.fillStyle = '#ffce6f';
+                    ctx.fillRect(0, 0, this.radius, this.radius);
+                    ctx.restore();
+                };
+            },
+            init: function() {
+                particleAlphabet.canvas = document.querySelector('canvas');
+                particleAlphabet.ctx = particleAlphabet.canvas.getContext('2d');
+                particleAlphabet.W = 500;
+                particleAlphabet.H = 500;
+                particleAlphabet.particlePositions = [];
+                particleAlphabet.particles = [];
+                particleAlphabet.tmpCanvas = document.createElement('canvas');
+                particleAlphabet.tmpCtx = particleAlphabet.tmpCanvas.getContext('2d');
+
+                particleAlphabet.canvas.width = particleAlphabet.W;
+                particleAlphabet.canvas.height = particleAlphabet.H;
+
+                setInterval(function(){
+                    particleAlphabet.changeLetter();
+                    particleAlphabet.getPixels(particleAlphabet.tmpCanvas, particleAlphabet.tmpCtx);
+                }, 2400);
+
+                particleAlphabet.makeParticles(2000);
+                particleAlphabet.animate();
+            },
+            currentPos: 0,
+            changeLetter: function() {
+                var letters = ['WITAJ', 'HELLO', 'HOLA'];
+
+                particleAlphabet.time = letters[particleAlphabet.currentPos];
+                particleAlphabet.currentPos++;
+                if (particleAlphabet.currentPos >= letters.length) {
+                    particleAlphabet.currentPos = 0;
+                }
+            },
+            makeParticles: function(num) {
+                for (var i = 0; i <= num; i++) {
+                    particleAlphabet.particles.push(new particleAlphabet.Particle(particleAlphabet.W / 2 + Math.random() * 400 - 200, particleAlphabet.H / 2 + Math.random() * 400 -200));
+                }
+            },
+            getPixels: function(canvas, ctx) {
+                var keyword = particleAlphabet.time,
+                    gridX = 3,
+                    gridY = 4;
+                canvas.width = 500;
+                canvas.height = 200;
+                ctx.fillStyle = 'red';
+                ctx.font = 'italic bold 10rem Bebas Neue';
+                ctx.fillText(keyword, canvas.width / 2 - ctx.measureText(keyword).width / 2, canvas.height / 2 + 100);
+                var idata = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                var buffer32 = new Uint32Array(idata.data.buffer);
+                if (particleAlphabet.particlePositions.length > 0) particleAlphabet.particlePositions = [];
+                for (var y = 0; y < canvas.height; y += gridY) {
+                    for (var x = 0; x < canvas.width; x += gridX) {
+                        if (buffer32[y * canvas.width + x]) {
+                            particleAlphabet.particlePositions.push({x: x, y: y});
+                        }
+                    }
+                }
+            },
+            animateParticles: function() {
+                var p, pPos;
+                for (var i = 0, num = particleAlphabet.particles.length; i < num; i++) {
+                    p = particleAlphabet.particles[i];
+                    pPos = particleAlphabet.particlePositions[i];
+                    if (particleAlphabet.particles.indexOf(p) === particleAlphabet.particlePositions.indexOf(pPos)) {
+                        p.x += (pPos.x - p.x) * .3;
+                        p.y += (pPos.y - p.y) * .3;
+                        p.draw(particleAlphabet.ctx);
+                    }
+                }
+            },
+            animate: function() {
+                requestAnimationFrame(particleAlphabet.animate);
+                particleAlphabet.ctx.fillStyle = '#111111';
+                particleAlphabet.ctx.fillRect(0, 0, particleAlphabet.W, particleAlphabet.H);
+                particleAlphabet.animateParticles();
+            }
+        };
+
+        window.onload = particleAlphabet.init;
+        /**/
+
+        setTimeout(function(){
+            $('.loading').addClass('hide');
+        },5000);
+        setTimeout(function(){
+            $('.hello-animation').removeClass('hide');
+            $('.header-bg').addClass('show-bg');
+        },6000);
+        setTimeout(function(){
+            $('.header-text').addClass('show-text');
+            $('.header-name').addClass('show-name');
+        },8000);
+
+
+
+    </script>
+    <div id="menu" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
+        <div class="uk-position-top">
+            <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+                <div class="content">
+                    <div class="uk-navbar-left menu-left">
+                        <ul class="uk-navbar-nav">
+                            <li><a id="logo" href="#cover" uk-scroll>Grzegorz Szczerba</a></li>
+                            <li><p id="logo-desc">/software developer</p></li>
+                        </ul>
+                    </div>
+                    <div class="uk-navbar-right menu-right">
+                        <ul class="uk-navbar-nav">
+                            <li class="uk-active"><a href="#cover" uk-scroll>home</a></li>
+                            <li><a href="#portfolio" uk-scroll>Portfolio</a></li>
+                            <li><a href="#resume" uk-scroll>Resume</a></li>
+                            <li><a href="#contact" uk-scroll>Contact</a></li>
+                            <p class="separator">|</p>
+                            <li><a href="https://github.com/vetomir" target="_blank" uk-icon="github"></a></li>
+                            <li><a href="https://www.linkedin.com/in/grzegorz-marcin-szczerba-2b838a136" target="_blank" uk-icon="linkedin"></a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+    <div id="header">
+
+        <div class="header-hello">
+            <div class="screen-grain">
+                <div></div>
+            </div>
+            <div class="display"></div>
+            <div class="loading"></div>
+            <canvas class="hello-animation hide"></canvas>
+            <div class="header-content">
+                <div>
+                    <h1 class="header-text">I'm</h1>
+                    <h1 class="header-name">Gregory</h1>
+                </div>
+                <h1 class="header-text">Your Best Candidate!</h1>
+            </div>
+            <div class="header-bg">
+                <!--?xml version="1.0" standalone="no"?-->
+                <svg width="1000" height="1000" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                    <defs>
+                        <radialGradient id="RadialGradient2" cx="-0.10" cy="1.1" r="1">
+                            <stop offset="0%" stop-color="#F6DEB6"></stop>
+                            <stop offset="100%" stop-color="transparent"></stop>
+                        </radialGradient>
+                    </defs>
+                    <rect x="1" y="100" rx="0" ry="0" width="1000" height="1000" fill="url(#RadialGradient2)"></rect>
+
+                </svg>
+            </div>
+
+        </div>
+
+
+    </div>
+    <div id="portfolio">
+        <div class="slider uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slider="center: true">
+            <ul class="uk-slider-items uk-grid">
+                <li class="uk-width-4-4" th:each="item : ${header}">
+                    <div th:class="|${item.style} portfolio-bg uk-panel|" uk-parallax="bgy: -200">
+                        <img th:src="${item.background}" alt="" >
+                        <div class="slider-item uk-position-center uk-panel">
+                            <div class="description">
+                                <h1 th:text="${item.project.title}">Photoblog app</h1>
+                                <p th:text="${item.project.description}">Based on Instagram and Pinterest</p>
+                                <div class="tags">
+                                    <span
+                                            th:each="tag : ${item.project.tags}"
+                                            th:text="${tag}"
+                                    >JAVA</span>
+                                </div>
+                                <div class="links">
+                                    <a th:if="${item.project.websiteUrl != null}" th:href="${item.project.websiteUrl}" target="_blank"  href="#" uk-icon="link">ONLINE</a>
+                                    <a th:if="${item.project.githubUrl != null}" th:href="${item.project.githubUrl}" target="_blank"  href="#" uk-icon="github-alt">GITHUB</a>
+                                </div>
+                            </div>
+                            <div class="presentation">
+                                <div th:if="${item.project.mobileImgUrl != null && !item.project.mobileImgUrl.isBlank() }" class="mobile">
+                                    <img th:src="${item.project.mobileImgUrl}" src="https://i.pinimg.com/originals/cf/f5/51/cff5512d086485db4854c8025e62d31f.png">
+                                </div>
+                                <div class="web">
+                                    <img th:src="${item.project.screenImgUrl}" src="https://cdn.dribbble.com/users/1124467/screenshots/3782251/attachments/852171/page_speed_test_conversations.png">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+
+            <a class="slidenav uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slider-item="previous"></a>
+            <a class="slidenav uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slider-item="next"></a>
+
+        </div>
+
+    </div>
+    <div id="resume">
+        <object data="your_url_to_pdf" type="application/pdf">
+            <iframe class="resume-file" src="https://portalgames.blob.core.windows.net/ethnos/Ethnos-Instrukcja.pdf"></iframe>
+        </object>
+    </div>
+    <div id="contact">
+        <div class="content">
+            <h1>CONTACT ME!</h1>
+            <h2>
+                I'm available for work even from this moment.
+                <br>
+                Drop me a line if you fancy a chat.
+            </h2>
+            <a class="email" href="#">gmszczerba@gmail.com</a>
+        </div>
+
+    </div>
+</body>
+</html>

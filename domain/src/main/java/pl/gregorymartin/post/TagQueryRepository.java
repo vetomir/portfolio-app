@@ -1,5 +1,6 @@
-package pl.gregorymartin.tags;
+package pl.gregorymartin.post;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface TagQueryRepository {
@@ -8,4 +9,12 @@ public interface TagQueryRepository {
     Tag save(Tag tag);
 
     Optional<Tag> getByName(String name);
+
+    List<Tag> findAll();
+
+    void delete(Tag tag);
+
+    List<String> findUnusedTags();
+
+    void clear();
 }

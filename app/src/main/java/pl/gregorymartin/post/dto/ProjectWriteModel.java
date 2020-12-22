@@ -1,8 +1,14 @@
 package pl.gregorymartin.post.dto;
 
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
+
+@Getter
+@Setter
 public
 class ProjectWriteModel {
     private String title;
@@ -18,6 +24,8 @@ class ProjectWriteModel {
 
     private String githubFrontEndUrl;
 
+    private String background;
+    private String style;
     private String todo;
 
     private List<String> tags;
@@ -34,78 +42,6 @@ class ProjectWriteModel {
         this.githubUrl = githubUrl;
         this.githubFrontEndUrl = githubFrontEndUrl;
         this.todo = todo;
-        this.tags = tags;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(final String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(final String description) {
-        this.description = description;
-    }
-
-    public String getScreenImgUrl() {
-        return screenImgUrl;
-    }
-
-    public void setScreenImgUrl(final String screenImgUrl) {
-        this.screenImgUrl = screenImgUrl;
-    }
-
-    public String getMobileImgUrl() {
-        return mobileImgUrl;
-    }
-
-    public void setMobileImgUrl(final String mobileImgUrl) {
-        this.mobileImgUrl = mobileImgUrl;
-    }
-
-    public String getWebsiteUrl() {
-        return websiteUrl;
-    }
-
-    public void setWebsiteUrl(final String websiteUrl) {
-        this.websiteUrl = websiteUrl;
-    }
-
-    public String getGithubUrl() {
-        return githubUrl;
-    }
-
-    public void setGithubUrl(final String githubUrl) {
-        this.githubUrl = githubUrl;
-    }
-
-    public String getGithubFrontEndUrl() {
-        return githubFrontEndUrl;
-    }
-
-    public void setGithubFrontEndUrl(final String githubFrontEndUrl) {
-        this.githubFrontEndUrl = githubFrontEndUrl;
-    }
-
-    public String getTodo() {
-        return todo;
-    }
-
-    public void setTodo(final String todo) {
-        this.todo = todo;
-    }
-
-    public List<String> getTags() {
-        return tags;
-    }
-
-    public void setTags(final List<String> tags) {
         this.tags = tags;
     }
 }
