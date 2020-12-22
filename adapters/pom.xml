@@ -13,11 +13,6 @@
     <name>adapters</name>
     <description>Portfolio Spring Boot app - adapters</description>
 
-    <properties>
-        <java.version>11</java.version>
-        <azure.version>2.3.5</azure.version>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>pl.gregorymartin</groupId>

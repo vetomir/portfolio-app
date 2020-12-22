@@ -2,7 +2,6 @@ package pl.gregorymartin.post;
 
 
 import org.springframework.data.annotation.PersistenceConstructor;
-import pl.gregorymartin.post.Project;
 
 import javax.persistence.*;
 import java.util.HashSet;

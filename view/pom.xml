@@ -12,9 +12,7 @@
     <name>view</name>
     <description>Portfolio Spring Boot app - adapters</description>
 
-    <properties>
-        <java.version>11</java.version>
-    </properties>
+
 
     <dependencies>
         <dependency>
@@ -36,18 +34,6 @@
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-        </dependency>
-
-
-        <!--Database-->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-data-jpa</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
         </dependency>
     </dependencies>
 

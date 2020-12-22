@@ -17,6 +17,10 @@
 
     <packaging>pom</packaging>
 
+    <properties>
+        <java.version>11</java.version>
+    </properties>
+
     <modules>
         <module>adapters</module>
         <module>app</module>
@@ -40,6 +44,17 @@
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-core</artifactId>
+        </dependency>
+
+        <!--Database-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <scope>runtime</scope>
         </dependency>
 
         <!--Lombok-->
