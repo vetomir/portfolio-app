@@ -12,6 +12,19 @@
     <name>domain</name>
     <description>Portfolio Spring Boot app - domain</description>
 
+    <dependencies>
+        <!---->
+    </dependencies>
 
-
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <mainClass>pl.gregorymartin.PortfolioAppApplication</mainClass>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
