@@ -10,11 +10,11 @@ import java.util.List;
 
 @Controller
 class PortfolioController {
-    private final ViewFasade viewFasade;
+    private final pl.gregorymartin.view.ViewFasade viewFasade;
 
     private static final int HEADER_ITEMS = 3;
 
-    PortfolioController(final ViewFasade viewFasade) {
+    PortfolioController(final pl.gregorymartin.view.ViewFasade viewFasade) {
         this.viewFasade = viewFasade;
     }
 

@@ -8,14 +8,14 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 class ViewFactory {
-    public static List<HeaderItem> toHeaderItem(List<HeaderWriteModel> headerWriteModels) {
+    public static List<pl.gregorymartin.view.HeaderItem> toHeaderItem(List<HeaderWriteModel> headerWriteModels) {
         return headerWriteModels.stream()
                 .map(ViewFactory::toHeaderItem)
                 .collect(Collectors.toList());
     }
 
-    public static HeaderItem toHeaderItem(HeaderWriteModel headerWriteModels) {
-        HeaderItem headerItem = new HeaderItem();
+    public static pl.gregorymartin.view.HeaderItem toHeaderItem(HeaderWriteModel headerWriteModels) {
+        pl.gregorymartin.view.HeaderItem headerItem = new pl.gregorymartin.view.HeaderItem();
         headerItem.setProjectId(headerWriteModels.getProjectId());
         headerItem.setPriority(headerWriteModels.getPriority());
         headerItem.setBackground(headerWriteModels.getBackground());
@@ -24,7 +24,7 @@ class ViewFactory {
         return headerItem;
     }
 
-    public static List<HeaderReadModel> headerItemToDto(List<HeaderItem> projects) {
+    public static List<HeaderReadModel> headerItemToDto(List<pl.gregorymartin.view.HeaderItem> projects) {
         if (projects != null) {
             return projects.stream()
                     .map(ViewFactory::headerItemToDto)
@@ -33,7 +33,7 @@ class ViewFactory {
         return new ArrayList<>();
     }
 
-    public static HeaderReadModel headerItemToDto(HeaderItem headerItem) {
+    public static HeaderReadModel headerItemToDto(pl.gregorymartin.view.HeaderItem headerItem) {
         return HeaderReadModel.builder()
                 .id(headerItem.getId())
                 .background(headerItem.getBackground())

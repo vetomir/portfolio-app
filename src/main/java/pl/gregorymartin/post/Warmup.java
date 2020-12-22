@@ -10,9 +10,9 @@ import java.util.List;
 
 @Component("viewWarmup")
 class Warmup implements ApplicationListener<ContextRefreshedEvent> {
-    private ViewFasade viewFasade;
+    private pl.gregorymartin.view.ViewFasade viewFasade;
 
-    Warmup(final ViewFasade viewFasade) {
+    Warmup(final pl.gregorymartin.view.ViewFasade viewFasade) {
         this.viewFasade = viewFasade;
         System.out.println("WARMUP");
     }

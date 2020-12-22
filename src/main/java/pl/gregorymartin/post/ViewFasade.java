@@ -14,24 +14,24 @@ import java.util.List;
 
 @Service
 class ViewFasade {
-    private final HeaderItemRepository itemRepository;
+    private final pl.gregorymartin.view.HeaderItemRepository itemRepository;
     private final ProjectFasade projectFasade;
     private final Logger logger = LoggerFactory.getLogger(ViewFasade.class);
 
-    ViewFasade(final HeaderItemRepository itemRepository, final ProjectFasade projectFasade) {
+    ViewFasade(final pl.gregorymartin.view.HeaderItemRepository itemRepository, final ProjectFasade projectFasade) {
         this.itemRepository = itemRepository;
         this.projectFasade = projectFasade;
         System.out.println("FASADE");
     }
 
     public List<HeaderReadModel> getAll(int page, Sort.Direction sort, String sortBy, int items) {
-        List<HeaderItem> list = itemRepository.findAll(
+        List<pl.gregorymartin.view.HeaderItem> list = itemRepository.findAll(
                 PageRequest.of(page, items,
                         Sort.by(sort, sortBy)
                 )).getContent();
 
 
-        List<HeaderReadModel> headerReadModels = ViewFactory.headerItemToDto(list);
+        List<HeaderReadModel> headerReadModels = pl.gregorymartin.view.ViewFactory.headerItemToDto(list);
         headerReadModels.forEach(x ->
                 x.setProject(
                         projectFasade.getSingle( x.getProjectId() )));
@@ -40,28 +40,28 @@ class ViewFasade {
         return headerReadModels;
     }
     public HeaderReadModel save(HeaderWriteModel source){
-        HeaderItem toSave = ViewFactory.toHeaderItem(source);
+        pl.gregorymartin.view.HeaderItem toSave = pl.gregorymartin.view.ViewFactory.toHeaderItem(source);
         ProjectReadModel project = projectFasade.getSingle(source.getProjectId());
         if(project == null)
             throw new IllegalArgumentException("Project ID:" + source.getProjectId() + " is not exist");
 
-        HeaderItem result = itemRepository.save(toSave);
+        pl.gregorymartin.view.HeaderItem result = itemRepository.save(toSave);
         logger.info("Header Item, for Project with id: {}, it's create ( ID: {} ).",project.getId(), result.getId());
         System.out.println("FASADE2");
-        return ViewFactory.headerItemToDto(result);
+        return pl.gregorymartin.view.ViewFactory.headerItemToDto(result);
     }
 
     public HeaderReadModel modify(long id, HeaderWriteModel source){
         if(!itemRepository.existsById(id))
             throw new IllegalArgumentException("Header (ID:" + source.getProjectId() + ") is not exist");
 
-        HeaderItem toSave = ViewFactory.toHeaderItem(source);
+        pl.gregorymartin.view.HeaderItem toSave = pl.gregorymartin.view.ViewFactory.toHeaderItem(source);
         toSave.setId(id);
         if(projectFasade.getSingle(source.getProjectId()) == null)
             throw new IllegalArgumentException("Project (ID:" + source.getProjectId() + ") is not exist");
 
-        HeaderItem result = itemRepository.save(toSave);
-        return ViewFactory.headerItemToDto(result);
+        pl.gregorymartin.view.HeaderItem result = itemRepository.save(toSave);
+        return pl.gregorymartin.view.ViewFactory.headerItemToDto(result);
     }
     public void delete(long id){
         itemRepository.deleteById(id);
