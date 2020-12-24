@@ -1,44 +1,86 @@
-package pl.gregorymartin.view;
+package pl.gregorymartin.post;
 
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.stereotype.Component;
-import pl.gregorymartin.view.dto.HeaderWriteModel;
+import pl.gregorymartin.post.dto.ProjectWriteModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component("viewWarmup")
+@Component("projectWarmup")
 class Warmup implements ApplicationListener<ContextRefreshedEvent> {
-    private pl.gregorymartin.view.ViewFasade viewFasade;
+    private final ProjectFasade projectFasade;
 
-    Warmup(final pl.gregorymartin.view.ViewFasade viewFasade) {
-        this.viewFasade = viewFasade;
-        System.out.println("WARMUP");
+    Warmup(final ProjectFasade projectFasade) {
+        this.projectFasade = projectFasade;
     }
+
 
     @Override
     public void onApplicationEvent(final ContextRefreshedEvent contextRefreshedEvent) {
-        loadHeaderItems();
-    }
 
-    private void loadHeaderItems() {
-        List<HeaderWriteModel> list = new ArrayList<>();
+        List<ProjectWriteModel> list = new ArrayList<>();
+        list.add(new ProjectWriteModel(
+                "Travello",
+                "Travel Booking Application",
+                "https://cdn.dribbble.com/users/1124467/screenshots/3782251/attachments/852171/page_speed_test_conversations.png",
+                "",
+                "",
+                "https://github.com/vetomir/Travel-Application",
+                "",
+                "",
+                List.of(
+                        "REST",
+                        "MS Azure",
+                        "MySql",
+                        "Java",
+                        "Spring Boot",
+                        "Clean Architecture",
+                        "Spring Security"
+                ))
+        );
+        list.add(new ProjectWriteModel(
+                "PicApp",
+                "Photoblog Application",
+                "https://cdn.dribbble.com/users/1124467/screenshots/3782251/attachments/852171/page_speed_test_conversations.png",
+                "",
+                "",
+                "https://github.com/vetomir/Travel-Application",
+                "",
+                "",
+                List.of(
+                        "REST",
+                        "MS Azure",
+                        "MySql",
+                        "Java",
+                        "Spring Boot",
+                        "Clean Architecture",
+                        "Spring Security"
+                ))
+        );
+        list.add(new ProjectWriteModel(
+                "Langer",
+                "Language Learning Application",
+                "https://cdn.dribbble.com/users/1124467/screenshots/3782251/attachments/852171/page_speed_test_conversations.png",
+                "",
+                "",
+                "https://github.com/vetomir/Travel-Application",
+                "",
+                "",
+                List.of(
+                        "REST",
+                        "MS Azure",
+                        "MySql",
+                        "Java",
+                        "Spring Boot",
+                        "Clean Architecture",
+                        "Spring Security"
+                ))
+        );
 
-        list.add(new HeaderWriteModel(2,1,
-                "https://images.unsplash.com/photo-1557672172-298e090bd0f1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80",
-                "white"));
 
-        list.add(new HeaderWriteModel(1,2,
-                "https://images.unsplash.com/photo-1558358994-86ce9a4724ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80",
-                "gold"));
+        list.forEach(projectFasade::save);
 
-        list.add(new HeaderWriteModel(3,3,
-                "https://images.unsplash.com/photo-1518112166137-85f9979a43aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80",
-                ""));
-
-        System.out.println("WARMUP2");
-
-        list.forEach(viewFasade::save);
     }
 }
