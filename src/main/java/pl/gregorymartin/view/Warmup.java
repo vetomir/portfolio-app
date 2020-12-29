@@ -32,11 +32,6 @@ class Warmup implements ApplicationListener<ContextRefreshedEvent> {
         list.add(new HeaderWriteModel(1,2,
                 "https://images.unsplash.com/photo-1558358994-86ce9a4724ca?ixlib=rb-1.2.1&auto=format&fit=crop&w=1934&q=80",
                 "gold"));
-
-        list.add(new HeaderWriteModel(3,3,
-                "https://images.unsplash.com/photo-1518112166137-85f9979a43aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2134&q=80",
-                ""));
-
         System.out.println("WARMUP2");
 
         list.forEach(viewFasade::save);

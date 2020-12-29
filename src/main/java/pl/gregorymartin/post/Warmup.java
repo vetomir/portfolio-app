@@ -24,7 +24,7 @@ class Warmup implements ApplicationListener<ContextRefreshedEvent> {
         list.add(new ProjectWriteModel(
                 "Travello",
                 "Travel Booking Application",
-                "https://cdn.dribbble.com/users/1124467/screenshots/3782251/attachments/852171/page_speed_test_conversations.png",
+                "http://cv.gregorymartin.pl/tourist-app.jpg",
                 "",
                 "",
                 "https://github.com/vetomir/Travel-Application",
@@ -41,28 +41,9 @@ class Warmup implements ApplicationListener<ContextRefreshedEvent> {
                 ))
         );
         list.add(new ProjectWriteModel(
-                "PicApp",
-                "Photoblog Application",
-                "https://cdn.dribbble.com/users/1124467/screenshots/3782251/attachments/852171/page_speed_test_conversations.png",
-                "",
-                "",
-                "https://github.com/vetomir/Travel-Application",
-                "",
-                "",
-                List.of(
-                        "REST",
-                        "MS Azure",
-                        "MySql",
-                        "Java",
-                        "Spring Boot",
-                        "Clean Architecture",
-                        "Spring Security"
-                ))
-        );
-        list.add(new ProjectWriteModel(
-                "Langer",
-                "Language Learning Application",
-                "https://cdn.dribbble.com/users/1124467/screenshots/3782251/attachments/852171/page_speed_test_conversations.png",
+                "Photoblog",
+                "Rest Application",
+                "http://cv.gregorymartin.pl/photoblog.jpg",
                 "",
                 "",
                 "https://github.com/vetomir/Travel-Application",

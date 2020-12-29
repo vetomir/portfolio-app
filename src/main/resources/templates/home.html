@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/css/uikit.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.5.7/dist/js/uikit-icons.min.js"></script>
@@ -122,6 +122,26 @@
         },8000);
 
 
+        let last_known_scroll_position = 0;
+        let ticking = false;
+
+        function doSomething(scroll_pos) {
+            // Do something with the scroll position
+        }
+
+        document.addEventListener('scroll', function(e) {
+            last_known_scroll_position = window.scrollY;
+
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    doSomething(last_known_scroll_position);
+                    ticking = false;
+                });
+
+                ticking = true;
+            }
+        });
+
 
     </script>
     <div id="menu" uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; bottom: #transparent-sticky-navbar">
@@ -226,7 +246,10 @@
     </div>
     <div id="resume">
         <object data="your_url_to_pdf" type="application/pdf">
-            <iframe class="resume-file"  src="http://gregorymartin.pl/cv/Szczerba_Grzegorz_CV.pdf"></iframe>
+            <object data="/Szczerba_Grzegorz_CV.pdf#view=FitH" type="application/pdf">
+                <iframe class="resume-file" src="http://cv.gregorymartin.pl/Szczerba_Grzegorz_CV.pdf"></iframe>
+            </object>
+
         </object>
     </div>
     <div id="contact">
